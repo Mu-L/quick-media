@@ -213,10 +213,13 @@ public class TTSService {
 
     private OkHttpClient getOkHttpClient() {
         if (okHttpClient == null) {
-            okHttpClient = new OkHttpClient.Builder()
+            OkHttpClient.Builder builder = new OkHttpClient.Builder()
                     // 设置 PING 帧发送间隔
-                    .pingInterval(20, TimeUnit.SECONDS)
-                    .build();
+                    .pingInterval(20, TimeUnit.SECONDS);
+            if (ttsConfig.getProxy() != null) {
+                builder.setProxy$okhttp(ttsConfig.getProxy());
+            }
+            okHttpClient = builder.build();
         }
         return okHttpClient;
     }

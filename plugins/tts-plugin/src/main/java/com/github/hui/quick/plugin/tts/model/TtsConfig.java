@@ -5,6 +5,7 @@ import com.github.hui.quick.plugin.tts.constant.VoiceEnum;
 import com.github.hui.quick.plugin.tts.service.save.OutputSaveHook;
 import com.github.hui.quick.plugin.tts.util.TtsTools;
 
+import java.net.Proxy;
 import java.util.Optional;
 
 public class TtsConfig {
@@ -35,6 +36,11 @@ public class TtsConfig {
      * 转语音的配置
      */
     private SsmlConfig ssml;
+
+    /**
+     * 代理
+     */
+    private Proxy proxy;
 
     private TtsConfig() {
     }
@@ -90,6 +96,20 @@ public class TtsConfig {
     public SsmlConfig setSsml(String text) {
         this.ssml = new SsmlConfig(this).text(text);
         return ssml;
+    }
+
+    public TtsConfig setProxy(Proxy.Type type, String host, int port) {
+        this.proxy = new Proxy(type, new java.net.InetSocketAddress(host, port));
+        return this;
+    }
+
+    public TtsConfig setProxy(Proxy proxy) {
+        this.proxy = proxy;
+        return this;
+    }
+
+    public Proxy getProxy() {
+        return proxy;
     }
 
     public String toConfig() {

@@ -5,6 +5,7 @@ import com.github.hui.quick.plugin.tts.model.TtsConfig;
 import com.github.hui.quick.plugin.tts.service.save.StreamSaveHook;
 
 import java.io.InputStream;
+import java.net.Proxy;
 
 /**
  * @author YiHui
@@ -13,6 +14,7 @@ import java.io.InputStream;
 public class Main {
     public static void main(String[] args) {
         TtsWrapper.sendTxt(TtsConfig.newConfig()
+                        .setProxy(Proxy.Type.SOCKS, "127.0.0.1", 10808)
                         .outputFileName("测试")
                         .setSsml("我喜欢吃葡萄 I like to eat grape")
                         .voice(VoiceEnum.zh_TW_HsiaoChenNeural)
