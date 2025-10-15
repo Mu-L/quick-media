@@ -1,6 +1,7 @@
 package com.github.hui.quick.plugin.base.io;
 
 import java.io.*;
+import java.util.stream.Collectors;
 
 /**
  * Created by @author yihui in 19:55 19/11/7.
@@ -33,4 +34,9 @@ public class IoUtil {
         }
     }
 
+    // 将InputStream的内容读取到String中进行打印
+    public static String readToString(InputStream inputStream) throws IOException {
+        ByteArrayInputStream bis = toByteArrayInputStream(inputStream);
+        return new BufferedReader(new InputStreamReader(bis)).lines().collect(Collectors.joining("\n"));
+    }
 }

@@ -1,6 +1,7 @@
 package com.github.hui.quick.plugin.test.v3.img;
 
 import com.github.hui.quick.plugin.base.awt.ColorUtil;
+import com.github.hui.quick.plugin.base.awt.ImageLoadUtil;
 import com.github.hui.quick.plugin.qrcode.v3.constants.DrawStyle;
 import com.github.hui.quick.plugin.qrcode.v3.constants.PicStyle;
 import com.github.hui.quick.plugin.qrcode.v3.entity.QrResource;
@@ -9,6 +10,8 @@ import com.github.hui.quick.plugin.test.v3.BasicGenTest;
 import org.junit.Test;
 
 import java.awt.*;
+import java.awt.image.BufferedImage;
+import java.io.IOException;
 
 /**
  * logo相关使用姿势
@@ -33,6 +36,15 @@ public class QrImgLogoGenTest extends BasicGenTest {
         boolean ans = QrCodeGenV3.of(msg).setSize(500)
                 .setLogo(new QrResource().setImg("logo.jpg"))
                 .asFile(prefix + "/logo_basic.png");
+        System.out.println(ans);
+    }
+
+    @Test
+    public void icoLogo() throws Exception {
+        String logo = "https://oc.paicoding.com/favicon.ico";
+        boolean ans = QrCodeGenV3.of(msg).setSize(500)
+                .setLogo(new QrResource().setImg(logo))
+                .asFile(prefix + "/logo_ico.png");
         System.out.println(ans);
     }
 

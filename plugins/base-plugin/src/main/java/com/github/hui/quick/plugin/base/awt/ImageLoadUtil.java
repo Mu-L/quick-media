@@ -2,12 +2,14 @@ package com.github.hui.quick.plugin.base.awt;
 
 import com.github.hui.quick.plugin.base.file.FileReadUtil;
 import com.github.hui.quick.plugin.base.gif.GifDecoder;
+import net.sf.image4j.codec.ico.ICODecoder;
 import org.apache.commons.lang3.StringUtils;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.List;
 
 /**
  * Created by yihui on 2018/3/23.
@@ -27,6 +29,11 @@ public class ImageLoadUtil {
         }
 
         try (InputStream stream = FileReadUtil.getStreamByFileName(path)) {
+            if (path.endsWith("ico")) {
+                // 使用 image4j 解析 ICO 文件
+                List<BufferedImage> images = ICODecoder.read(stream);
+                return images.isEmpty() ? null : images.get(0);
+            }
             return ImageIO.read(stream);
         }
     }

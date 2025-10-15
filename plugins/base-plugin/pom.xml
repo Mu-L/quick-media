@@ -57,6 +57,15 @@
             <artifactId>guava</artifactId>
             <version>[31.1-jre,)</version>
         </dependency>
+
+        <!-- https://mvnrepository.com/artifact/org.jclarion/image4j  用于ico格式图片读取-->
+        <dependency>
+            <groupId>org.jclarion</groupId>
+            <artifactId>image4j</artifactId>
+            <version>0.7</version>
+            <scope>provided</scope>
+        </dependency>
+
     </dependencies>
 
 </project>
